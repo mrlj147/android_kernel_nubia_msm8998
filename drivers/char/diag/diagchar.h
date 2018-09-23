@@ -75,12 +75,12 @@
 
 #define DIAG_CON_NONE		(0x0000)	/* Bit mask for No SS*/
 #define DIAG_CON_ALL		(DIAG_CON_APSS | DIAG_CON_MPSS \
-				| DIAG_CON_LPASS | DIAG_CON_WCNSS \
-				| DIAG_CON_SENSORS | DIAG_CON_WDSP \
-				| DIAG_CON_CDSP)
+		| DIAG_CON_LPASS | DIAG_CON_WCNSS \
+		| DIAG_CON_SENSORS | DIAG_CON_WDSP \
+		| DIAG_CON_CDSP)
 #define DIAG_CON_UPD_ALL	(DIAG_CON_UPD_WLAN \
-				| DIAG_CON_UPD_AUDIO \
-				| DIAG_CON_UPD_SENSORS)
+		| DIAG_CON_UPD_AUDIO \
+		| DIAG_CON_UPD_SENSORS)
 
 #define DIAG_STM_MODEM	0x01
 #define DIAG_STM_LPASS	0x02
@@ -233,13 +233,13 @@
 
 /* Number of sessions possible in Memory Device Mode. +1 for Apps data */
 #define NUM_MD_SESSIONS		(NUM_PERIPHERALS \
-					+ NUM_UPD + 1)
+		+ NUM_UPD + 1)
 
 #define MD_PERIPHERAL_MASK(x)	(1 << x)
 
 #define MD_PERIPHERAL_PD_MASK(x)					\
 	((x == PERIPHERAL_MODEM) ? (1 << UPD_WLAN) :			\
-	((x == PERIPHERAL_LPASS) ? (1 << UPD_AUDIO | 1 << UPD_SENSORS) : 0))\
+	 ((x == PERIPHERAL_LPASS) ? (1 << UPD_AUDIO | 1 << UPD_SENSORS) : 0))\
 
 /*
  * Number of stm processors includes all the peripherals and
@@ -669,10 +669,10 @@ void diag_ws_reset(int type);
 void diag_ws_release(void);
 void chk_logging_wakeup(void);
 int diag_cmd_add_reg(struct diag_cmd_reg_entry_t *new_entry, uint8_t proc,
-		     int pid);
+		int pid);
 struct diag_cmd_reg_entry_t *diag_cmd_search(
-			struct diag_cmd_reg_entry_t *entry,
-			int proc);
+		struct diag_cmd_reg_entry_t *entry,
+		int proc);
 void diag_cmd_remove_reg(struct diag_cmd_reg_entry_t *entry, uint8_t proc);
 void diag_cmd_remove_reg_by_pid(int pid);
 void diag_cmd_remove_reg_by_proc(int proc);
@@ -687,4 +687,6 @@ struct diag_md_session_t *diag_md_session_get_pid(int pid);
 struct diag_md_session_t *diag_md_session_get_peripheral(uint8_t peripheral);
 int diag_md_session_match_pid_peripheral(int pid, uint8_t peripheral);
 
+int nubia_diag_get_ftm_type(struct diag_cmd_reg_entry_t *entry);
+int nubia_diag_get_ftm_type_reg(struct diag_cmd_reg_entry_t *entry);
 #endif
