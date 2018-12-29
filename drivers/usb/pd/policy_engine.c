@@ -441,6 +441,7 @@ static inline void start_usb_peripheral(struct usbpd *pd)
        extcon_set_cable_state_(pd->extcon, EXTCON_USB_SPEED, 0);
 #else
 	extcon_set_cable_state_(pd->extcon, EXTCON_USB_SPEED, 1);
+#endif
 	extcon_set_cable_state_(pd->extcon, EXTCON_USB, 1);
 }
 
